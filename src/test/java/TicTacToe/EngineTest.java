@@ -86,6 +86,18 @@ public class EngineTest {
         validateWin(x, o);
     }
 
+    @Test public void testCatGame() {
+        assertTrue(engine.play(8) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(0) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(1) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(2) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(3) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(5) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(4) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(7) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(6) == Engine.Status.CAT_GAME);
+    }
+
     private void validateWin(int[] xPlays, int[] oPlays) {
         for (int i = 0; i < oPlays.length; i++) {
             assertTrue(engine.play(xPlays[i]) == Engine.Status.SUCCESS);
