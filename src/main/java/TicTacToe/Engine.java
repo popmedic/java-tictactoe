@@ -6,13 +6,14 @@ public class Engine {
     }
 
     public enum Status {
-        SUCCESS, SAME_SPOT, WIN, CAT_GAME
+        SUCCESS, SAME_SPOT, WIN, CAT_GAME, OOB
     }
 
     public Token[] board() { return _board.clone(); }
     public Token turn() { return _turn; }
 
     public Status play(int spot) {
+        if (spot < 0 || spot > 8) { return Status.OOB; }
         if (isSpotEmpty(spot)) { return Status.SAME_SPOT; }
         _board[spot] = turn();
 
