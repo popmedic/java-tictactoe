@@ -10,7 +10,7 @@ public class Engine {
 
     public void play(int spot) {
         _board[spot] = turn();
-        _turn = _turn == Token.X ? Token.O : Token.X;
+        _turn = toggle(_turn);
     }
 
     public Engine() {
@@ -20,4 +20,8 @@ public class Engine {
     
     private Token[] _board;
     private Token _turn;
+
+    private Token toggle(Token token) {
+        return _turn == Token.X ? Token.O : Token.X;
+    }
 }
