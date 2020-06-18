@@ -6,7 +6,7 @@ public class Engine {
     }
 
     public enum Status {
-        SUCCESS, SAME_SPOT, WIN
+        SUCCESS, SAME_SPOT, WIN, CAT_GAME
     }
 
     public Token[] board() { return _board.clone(); }
@@ -25,9 +25,14 @@ public class Engine {
             }
         }
 
-        _turn = toggle(_turn);
+        for (Token token : _board) {
+            if (token == null) {
+                _turn = toggle(_turn);
+                return Status.SUCCESS;
+            }
+        }
 
-        return Status.SUCCESS;
+        return Status.CAT_GAME;
     }
 
     public Engine() {
