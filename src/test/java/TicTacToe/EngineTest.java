@@ -32,4 +32,9 @@ public class EngineTest {
     @Test public void testFirstTokenX() {
         assertTrue("first turn is X", engine.turn() == Token.X);
     }
+
+    @Test public void testPlayXThenY() {
+        engine.play(1);
+        assertTrue("next turn is O", engine.turn() == Token.O);
+    }
 }
