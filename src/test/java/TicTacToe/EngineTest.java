@@ -45,4 +45,13 @@ public class EngineTest {
         assertTrue("Validate that when play on same spot get result SAME_SPOT", engine.play(1) == Engine.Status.SAME_SPOT);
         assertTrue("turn should still be 0", engine.turn() == Token.O);
     }
+
+    @Test public void testWinRow1() {
+        assertTrue(engine.play(0) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(3) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(1) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(4) == Engine.Status.SUCCESS);
+        assertTrue(engine.play(2) == Engine.Status.WIN);
+        assertTrue(engine.turn() == Engine.Token.X);
+    }
 }
