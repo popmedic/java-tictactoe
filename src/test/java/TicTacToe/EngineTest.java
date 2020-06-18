@@ -36,6 +36,8 @@ public class EngineTest {
     @Test public void testPlayXThenY() {
         assertTrue("Validate play 1 is success", engine.play(1) == Engine.Status.SUCCESS);
         assertTrue("next turn is O", engine.turn() == Token.O);
+        assertTrue("Validate play 2 is success", engine.play(2) == Engine.Status.SUCCESS);
+        assertTrue("next turn is X", engine.turn() == Token.X);
     }
 
     @Test public void testPlayNotEmptySpot() {

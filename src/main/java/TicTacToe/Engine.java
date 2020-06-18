@@ -13,7 +13,7 @@ public class Engine {
     public Token turn() { return _turn; }
 
     public Status play(int spot) {
-        if (_board[spot] != null) { return Status.SAME_SPOT; }
+        if (isSpotEmpty(spot)) { return Status.SAME_SPOT; }
         _board[spot] = turn();
         _turn = toggle(_turn);
         return Status.SUCCESS;
@@ -26,8 +26,6 @@ public class Engine {
     
     private Token[] _board;
     private Token _turn;
-
-    private Token toggle(Token token) {
-        return _turn == Token.X ? Token.O : Token.X;
-    }
+    private Token toggle(Token token) { return _turn == Token.X ? Token.O : Token.X; }
+    private boolean isSpotEmpty(int spot) { return _board[spot] != null; }
 }
