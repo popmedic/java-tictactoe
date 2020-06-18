@@ -8,6 +8,11 @@ public class Engine {
     public Token[] board() { return _board.clone(); }
     public Token turn() { return _turn; }
 
+    public void play(int spot) {
+        _board[spot] = turn();
+        _turn = _turn == Token.X ? Token.O : Token.X;
+    }
+
     public Engine() {
         _board = new Token[9];
         _turn = Token.X;
