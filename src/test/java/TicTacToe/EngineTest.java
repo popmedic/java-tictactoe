@@ -9,7 +9,7 @@ public class EngineTest {
     }
 
     @Test public void test3x3board() {
-        Engine engine = Engine();
-        assertTrue("should have a 3x3 board", Engine.board().length == 3*3);
+        Engine engine = new Engine();
+        assertTrue("should have a 3x3 board", engine.board().length == 3*3);
     }
 }
