@@ -28,4 +28,8 @@ public class EngineTest {
             assertTrue("board should be empty on start", spot == null);
         }
     }
+
+    @Test public void testFirstTokenX() {
+        assertTrue("first turn is X", engine.turn() == Token.X);
+    }
 }
