@@ -5,12 +5,18 @@ public class Engine {
         X, O
     }
 
+    public enum Status {
+        SUCCESS, SAME_SPOT
+    }
+
     public Token[] board() { return _board.clone(); }
     public Token turn() { return _turn; }
 
-    public void play(int spot) {
+    public Status play(int spot) {
+        if (_board[spot] != null) { return Status.SAME_SPOT; }
         _board[spot] = turn();
         _turn = toggle(_turn);
+        return Status.SUCCESS;
     }
 
     public Engine() {
