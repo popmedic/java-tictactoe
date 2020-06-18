@@ -13,7 +13,7 @@ public class Engine {
     public Token turn() { return _turn; }
 
     public Status play(int spot) {
-        if (spot < 0 || spot > 8) { return Status.OOB; }
+        if (isSpotOOB(spot)) { return Status.OOB; }
         if (isSpotEmpty(spot)) { return Status.SAME_SPOT; }
         _board[spot] = turn();
 
@@ -45,6 +45,7 @@ public class Engine {
     private Token _turn;
     private Token toggle(Token token) { return _turn == Token.X ? Token.O : Token.X; }
     private boolean isSpotEmpty(int spot) { return _board[spot] != null; }
+    private boolean isSpotOOB(int spot) { return spot < 0 || spot > 8; }
     private final Integer[][] WIN_TABLE = {
         {0,1,2}, 
         {3,4,5}, 
