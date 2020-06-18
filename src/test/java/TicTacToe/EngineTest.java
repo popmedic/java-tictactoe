@@ -47,11 +47,51 @@ public class EngineTest {
     }
 
     @Test public void testWinRow1() {
-        assertTrue(engine.play(0) == Engine.Status.SUCCESS);
-        assertTrue(engine.play(3) == Engine.Status.SUCCESS);
-        assertTrue(engine.play(1) == Engine.Status.SUCCESS);
-        assertTrue(engine.play(4) == Engine.Status.SUCCESS);
-        assertTrue(engine.play(2) == Engine.Status.WIN);
+        int[] x = {0,1,2}, o = {3,4};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinRow2() {
+        int[] x = {3,4,5}, o = {1,2};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinRow3() {
+        int[] x = {6,7,8}, o = {1,2};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinCol1() {
+        int[] x = {0,3,6}, o = {1,4};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinCol2() {
+        int[] x = {1,4,7}, o = {0,3};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinCol3() {
+        int[] x = {2,5,8}, o = {1,4};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinDia1() {
+        int[] x = {0,4,8}, o = {1,3};
+        validateWin(x, o);
+    }
+
+    @Test public void testWinDia2() {
+        int[] x = {2,4,6}, o = {1,3};
+        validateWin(x, o);
+    }
+
+    private void validateWin(int[] xPlays, int[] oPlays) {
+        for (int i = 0; i < oPlays.length; i++) {
+            assertTrue(engine.play(xPlays[i]) == Engine.Status.SUCCESS);
+            assertTrue(engine.play(oPlays[i]) == Engine.Status.SUCCESS);
+        }
+        assertTrue(engine.play(xPlays[xPlays.length - 1]) == Engine.Status.WIN);
         assertTrue(engine.turn() == Engine.Token.X);
     }
 }

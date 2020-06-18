@@ -16,8 +16,13 @@ public class Engine {
         if (isSpotEmpty(spot)) { return Status.SAME_SPOT; }
         _board[spot] = turn();
 
-        if (_board[0] == _board[1] && _board[1] == _board[2]) {
-            return  Status.WIN;
+        for (Integer[] row : WIN_TABLE) {
+            if (_board[row[0]] != null && 
+                _board[row[0]] == _board[row[1]] && 
+                _board[row[1]] == _board[row[2]]) {
+                
+                return Status.WIN;
+            }
         }
 
         _turn = toggle(_turn);
@@ -34,4 +39,14 @@ public class Engine {
     private Token _turn;
     private Token toggle(Token token) { return _turn == Token.X ? Token.O : Token.X; }
     private boolean isSpotEmpty(int spot) { return _board[spot] != null; }
+    private final Integer[][] WIN_TABLE = {
+        {0,1,2}, 
+        {3,4,5}, 
+        {6,7,8},
+        {0,3,6},
+        {1,4,7},
+        {2,5,8},
+        {0,4,8},
+        {2,4,6}
+    };
 }
