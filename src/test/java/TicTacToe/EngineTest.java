@@ -34,7 +34,13 @@ public class EngineTest {
     }
 
     @Test public void testPlayXThenY() {
-        engine.play(1);
+        assertTrue("Validate play 1 is success", engine.play(1) == Engine.Status.SUCCESS);
         assertTrue("next turn is O", engine.turn() == Token.O);
+    }
+
+    @Test public void testPlayNotEmptySpot() {
+        assertTrue("Validate play 1 is success", engine.play(1) == Engine.Status.SUCCESS);
+        assertTrue("Validate that when play on same spot get result SAME_SPOT", engine.play(1) == Engine.Status.SAME_SPOT);
+        assertTrue("turn should still be 0", engine.turn() == Token.O);
     }
 }
