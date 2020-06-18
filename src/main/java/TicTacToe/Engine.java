@@ -6,7 +6,7 @@ public class Engine {
     }
 
     public enum Status {
-        SUCCESS, SAME_SPOT
+        SUCCESS, SAME_SPOT, WIN
     }
 
     public Token[] board() { return _board.clone(); }
@@ -15,7 +15,13 @@ public class Engine {
     public Status play(int spot) {
         if (isSpotEmpty(spot)) { return Status.SAME_SPOT; }
         _board[spot] = turn();
+
+        if (_board[0] == _board[1] && _board[1] == _board[2]) {
+            return  Status.WIN;
+        }
+
         _turn = toggle(_turn);
+
         return Status.SUCCESS;
     }
 
