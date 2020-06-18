@@ -3,8 +3,61 @@
  */
 package TicTacToeApp;
 
+import java.util.Scanner;
+
+import TicTacToe.Engine;
+
 public class App {
-    public static void main(String[] args) {
-        
+    public String printBoard(Engine.Token[] board) {
+        StringBuilder builder = new StringBuilder();
+        for (Integer i = 0; i < board.length; i++) {
+            builder.append(" ").append(board[i] == null ? Integer.valueOf(i+1).toString() : board[i]).append(" ")
+                    .append(i != 2 && i != 5 && i != 8 ? "|" : "");
+            if (i + 1 < board.length && (i + 1) % 3 == 0)
+                builder.append("\n---|---|---\n");
+        }
+        return builder.toString();
+    }
+
+    public static  void main(String[] args) {
+        App app = new App();
+
+        Engine engine = new Engine();
+
+        Scanner scanner = new Scanner(System.in);
+        loop: while(true) {
+            System.out.println(app.printBoard(engine.board()));
+            System.out.println(engine.turn() + " enter a spot [1-9]:");
+            String in = scanner.nextLine().strip();
+            if (in.equals("q")) {
+                System.out.println("Bye.");
+                break loop;
+            }
+            try {
+                Integer intIn = Integer.parseInt(in);
+                Integer spot = intIn - 1;
+                switch (engine.play(spot)) {
+                    case SUCCESS:
+                        continue loop;
+                    case WIN:
+                        System.out.println(engine.turn()+" WINS!!! 🥇");
+                        System.out.println(app.printBoard(engine.board()));
+                        break loop;
+                    case OOB:
+                        System.out.println("error: index out of range");
+                        continue loop;
+                    case SAME_SPOT:
+                        System.out.println(Integer.toString(spot+1)+" already been played.");
+                        continue loop;
+                    case CAT_GAME:
+                        System.out.println("cat game 😼");
+                        break loop;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e);
+                continue loop;
+            }
+        }
+        scanner.close();
     }
 }
