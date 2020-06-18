@@ -98,6 +98,11 @@ public class EngineTest {
         assertTrue(engine.play(6) == Engine.Status.CAT_GAME);
     }
 
+    @Test public void testOutOfBounds() {
+        assert(engine.play(-1) == Engine.Status.OOB);
+        assert(engine.play(9) == Engine.Status.OOB);
+    }
+
     private void validateWin(int[] xPlays, int[] oPlays) {
         for (int i = 0; i < oPlays.length; i++) {
             assertTrue(engine.play(xPlays[i]) == Engine.Status.SUCCESS);
