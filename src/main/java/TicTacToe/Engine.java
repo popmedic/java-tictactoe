@@ -35,11 +35,17 @@ public class Engine {
     
     private Token _turn;
     
-    private Token toggle(Token token) { return _turn == Token.X ? Token.O : Token.X; }
+    private Token toggle(Token token) { 
+        return _turn == Token.X ? Token.O : Token.X; 
+    }
     
-    private boolean isSpotEmpty(int spot) { return _board[spot] != null; }
+    private boolean isSpotEmpty(int spot) { 
+        return _board[spot] != null; 
+    }
     
-    private boolean isSpotOOB(int spot) { return spot < 0 || spot > 8; }
+    private boolean isSpotOOB(int spot) { 
+        return spot < 0 || spot > 8; 
+    }
     
     private boolean isWin() {
         for (int[] row : WIN_TABLE) {
