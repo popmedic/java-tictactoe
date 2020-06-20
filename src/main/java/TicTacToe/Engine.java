@@ -14,7 +14,7 @@ public class Engine {
 
     public Status play(int spot) {
         if (isSpotOOB(spot)) return Status.OOB;
-        if (isSpotEmpty(spot)) return Status.SAME_SPOT;
+        if (!isSpotEmpty(spot)) return Status.SAME_SPOT;
         
         _board[spot] = turn();
 
@@ -40,7 +40,7 @@ public class Engine {
     }
     
     private boolean isSpotEmpty(int spot) { 
-        return _board[spot] != null; 
+        return _board[spot] == null; 
     }
     
     private boolean isSpotOOB(int spot) { 
